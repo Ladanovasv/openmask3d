@@ -14,7 +14,7 @@ import numpy as np
 import torch
 import time
 import pdb
-
+torch.autograd.set_grad_enabled(False)
 def get_parameters(cfg: DictConfig):
     #logger = logging.getLogger(__name__)
     load_dotenv(".env")

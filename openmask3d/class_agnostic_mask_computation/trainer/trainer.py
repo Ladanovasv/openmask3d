@@ -6,7 +6,7 @@ import shutil
 import os
 import math
 import pyviz3d.visualizer as vis
-from torch_scatter import scatter_mean
+# from torch_scatter import scatter_mean
 #import matplotlib
 from benchmark.evaluate_semantic_instance import evaluate
 from collections import defaultdict
@@ -720,8 +720,8 @@ class InstanceSegmentation(pl.LightningModule):
             if not os.path.exists(pred_save_folder):
                 os.makedirs(pred_save_folder)
 
-            torch.save(self.preds[file_names[bid]]['pred_masks'].astype(np.float16), os.path.join(pred_save_folder, file_names[bid]+"_masks.pt"))
-
+            torch.save(self.preds[file_names[bid]]['pred_masks'].astype(np.float16), os.path.join(pred_save_folder, file_names[bid]+"_masks.pt"), pickle_protocol=4)
+            print("Save masks")
             if str(self.config.general.save_visualizations).lower()!="false":
                 print('************************************************************************')
                 print("[INFO] Shape of instance masks:", self.preds[file_names[bid]]['pred_masks'].shape)

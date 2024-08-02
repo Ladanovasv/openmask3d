@@ -6,7 +6,8 @@ from openmask3d.utils import get_free_gpu, create_out_folder
 from openmask3d.mask_features_computation.features_extractor import FeaturesExtractor
 import torch
 import os
-
+torch.autograd.set_grad_enabled(False)
+torch.set_grad_enabled(False)
 # TIP: add version_base=None to the arguments if you encounter some error
 @hydra.main(config_path="configs", config_name="openmask3d_inference")
 def main(ctx: DictConfig):
@@ -63,6 +64,7 @@ def main(ctx: DictConfig):
                                            sam_checkpoint=ctx.external.sam_checkpoint,
                                            vis_threshold=ctx.openmask3d.vis_threshold,
                                            device=device)
+    torch.cuda.empty_cache()
     print("[INFO] Computing per-mask CLIP features.")
     features = features_extractor.extract_features(topk=ctx.openmask3d.top_k, 
                                                    multi_level_expansion_ratio = ctx.openmask3d.multi_level_expansion_ratio,

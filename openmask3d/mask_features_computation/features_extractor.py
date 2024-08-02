@@ -7,7 +7,7 @@ from tqdm import tqdm
 import os
 from openmask3d.data.load import Camera, InstanceMasks3D, Images, PointCloud, get_number_of_images
 from openmask3d.mask_features_computation.utils import initialize_sam_model, mask2box_multi_level, run_sam
-
+torch.autograd.set_grad_enabled(False)
 class PointProjector:
     def __init__(self, camera: Camera, 
                  point_cloud: PointCloud, 
@@ -68,6 +68,7 @@ class PointProjector:
                                         vis_threshold).astype(bool)
             inside_mask[inside_mask == True] = visibility_mask
             visible_points_view[i] = inside_mask
+        print(f"[INFO] Computed the visible points in each view.")
         return visible_points_view, projected_points, resolution
     
     def get_bbox(self, mask, view):

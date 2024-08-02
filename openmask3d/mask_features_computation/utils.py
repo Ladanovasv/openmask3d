@@ -1,7 +1,7 @@
 from segment_anything import sam_model_registry, SamPredictor
 import numpy as np
 import torch
-
+torch.autograd.set_grad_enabled(False)
 def initialize_sam_model(device, sam_model_type, sam_checkpoint):
     sam = sam_model_registry[sam_model_type](checkpoint=sam_checkpoint)
     sam.to(device)

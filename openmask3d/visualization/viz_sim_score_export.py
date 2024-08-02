@@ -70,9 +70,9 @@ def main():
     # --------------------------------
     # Set the paths
     # --------------------------------
-    path_scene_pcd = "data/scene_example.ply"
-    path_pred_masks = "data/scene_example_masks.pt"
-    path_openmask3d_features = "data/scene_example_openmask3d_features.npy"
+    path_scene_pcd = "/datasets/Scannet/scans/scene0011_00/scene0011_00_vh_clean_2.ply"
+    path_pred_masks = "/home/docker_opr/OpenMask3D/output/2024-05-14-19-23-07-experiment/scene0011_00_vh_clean_2_masks.pt"
+    path_openmask3d_features = "/home/docker_opr/OpenMask3D/output/2024-05-14-19-23-07-experiment/scene0011_00_vh_clean_2_openmask3d_features.npy"
     
 
     # --------------------------------
@@ -94,7 +94,7 @@ def main():
     # --------------------------------
     # Set the query text
     # --------------------------------
-    query_text = "ENTER QUERY TEXT HERE" # change the query text here
+    query_text = "table" # change the query text here
 
 
     # --------------------------------

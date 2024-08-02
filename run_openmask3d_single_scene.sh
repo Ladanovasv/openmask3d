@@ -10,11 +10,11 @@ set -e
 # --------
 # NOTE: SET THESE PARAMETERS BASED ON YOUR SCENE!
 # data paths
-SCENE_DIR="$(pwd)/resources/scene_example"
+SCENE_DIR="/datasets/Scannet/scans/scene0389_00"
 SCENE_POSE_DIR="${SCENE_DIR}/pose"
 SCENE_INTRINSIC_PATH="${SCENE_DIR}/intrinsic/intrinsic_color.txt"
 SCENE_INTRINSIC_RESOLUTION="[968,1296]" # change if your intrinsics are based on another resolution
-SCENE_PLY_PATH="${SCENE_DIR}/scene_example.ply"
+SCENE_PLY_PATH="${SCENE_DIR}/scene0389_00_rgb.ply"
 SCENE_COLOR_IMG_DIR="${SCENE_DIR}/color"
 SCENE_DEPTH_IMG_DIR="${SCENE_DIR}/depth"
 IMG_EXTENSION=".jpg"
@@ -29,9 +29,9 @@ OUTPUT_DIRECTORY="$(pwd)/output"
 TIMESTAMP=$(date +"%Y-%m-%d-%H-%M-%S")
 OUTPUT_FOLDER_DIRECTORY="${OUTPUT_DIRECTORY}/${TIMESTAMP}-${EXPERIMENT_NAME}"
 SAVE_VISUALIZATIONS=false #if set to true, saves pyviz3d visualizations
-SAVE_CROPS=false 
+SAVE_CROPS=True
 # gpu optimization
-OPTIMIZE_GPU_USAGE=false
+OPTIMIZE_GPU_USAGE=True
 
 cd openmask3d
 
@@ -42,9 +42,9 @@ general.experiment_name=${EXPERIMENT_NAME} \
 general.checkpoint=${MASK_MODULE_CKPT_PATH} \
 general.train_mode=false \
 data.test_mode=test \
-model.num_queries=120 \
+model.num_queries=100 \
 general.use_dbscan=true \
-general.dbscan_eps=0.95 \
+general.dbscan_eps=0.98 \
 general.save_visualizations=${SAVE_VISUALIZATIONS} \
 general.scene_path=${SCENE_PLY_PATH} \
 general.mask_save_dir="${OUTPUT_FOLDER_DIRECTORY}" \
